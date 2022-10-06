@@ -26,11 +26,11 @@
                 @csrf
 
                 <div class="field">
-                    <label class="label">Question</label>
+                    <label class="label">Name</label>
                     <div class="field-body">
                         <div class="field">
                             <div class="control icons-left">
-                                <input class="input" type="text" placeholder="Question" name="question">
+                                <input class="input" type="text" placeholder="Name" name="name">
                                 <span class="icon left"><i class="mdi mdi-view-list"></i></span>
                             </div>
                         </div>
@@ -38,13 +38,6 @@
                     </div>
                 </div>
 
-                <div class="field">
-                    <label class="label">Answer</label>
-                    <div class="control">
-                        <textarea name="answer" class="ckeditor input" type="text" class="textarea" placeholder="Answer"
-                            rows="2"></textarea>
-                    </div>
-                </div>
 
                 <hr>
 

@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Amenity;
+
 
 class AdminAmenityController extends Controller
 {
@@ -13,7 +15,7 @@ class AdminAmenityController extends Controller
         return view('admin.amenity.view', compact('amenities'));
     }
 
-    public function add()
+    public function create()
     {
         return view('admin.amenity.add');
     }
@@ -28,15 +30,15 @@ class AdminAmenityController extends Controller
         $amenity->name = $request->name;
         $amenity->save();
 
-        return redirect()->back()->with('success', 'Amenity is added successfully.');
+        return redirect()->route('admin_amenity_view')->with('success', 'Amenity is added successfully.');
 
     }
 
 
     public function edit($id)
     {
-        $amenity = Amenity::where('id',$id)->first();
-        return view('admin.amenity.edit', compact('amenity'));
+        $single_amenity = Amenity::where('id',$id)->first();
+        return view('admin.amenity.edit', compact('single_amenity'));
     }
 
     public function update(Request $request,$id) 
@@ -45,7 +47,7 @@ class AdminAmenityController extends Controller
         $amenity->name = $request->name;
         $amenity->update();
 
-        return redirect()->back()->with('success', 'Amenity is updated successfully.');
+        return redirect()->route('admin_amenity_view')->with('success', 'Amenity is updated successfully.');
     }
 
     public function delete($id)
@@ -53,6 +55,6 @@ class AdminAmenityController extends Controller
         $amenity = Amenity::where('id',$id)->first();
         $amenity->delete();
 
-        return redirect()->back()->with('success', 'Amenity is deleted successfully.');
+        return redirect()->route('admin_amenity_view')->with('success', 'Amenity is deleted successfully.');
     }
 }

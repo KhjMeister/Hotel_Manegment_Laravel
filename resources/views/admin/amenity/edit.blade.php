@@ -1,6 +1,6 @@
 @extends('admin.layout.app')
 
-@section('heading','Edit FAQ')
+@section('heading','Edit Amenity')
 
 @section('page_scripts')
 <script src="//cdn.ckeditor.com/4.14.1/standard/ckeditor.js"></script>
@@ -12,7 +12,7 @@
 @endsection
 
 @section('right_top_button')
-<a href="{{ route('admin_faq_view') }}" class="button light">Back to FAQs</a>
+<a href="{{ route('admin_amenity_view') }}" class="button light">Back to Amenity</a>
 @endsection
 
 
@@ -22,17 +22,17 @@
     <div class="card mb-6">
 
         <div class="card-content">
-            <form method="POST" action="{{ route('admin_faq_update',$single_faq->id) }}"
+            <form method="POST" action="{{ route('admin_amenity_update',$single_amenity->id) }}"
                 enctype="multipart/form-data">
                 @csrf
                 
                 <div class="field">
-                    <label class="label">Question</label>
+                    <label class="label">Name</label>
                     <div class="field-body">
                         <div class="field">
                             <div class="control icons-left">
-                                <input value="{{ $single_faq->question }}" class="input" type="text"
-                                    placeholder="Question" name="heading">
+                                <input value="{{ $single_amenity->name }}" class="input" type="text"
+                                    placeholder="Name" name="name">
                                 <span class="icon left"><i class="mdi mdi-view-list"></i></span>
                             </div>
                         </div>
@@ -40,14 +40,6 @@
                     </div>
                 </div>
 
-                <div class="field">
-                    <label class="label">Answer</label>
-                    <div class="control">
-                        <textarea name="answer" class="ckeditor input" type="text" class="textarea"
-                            placeholder="short content">{{ $single_faq->answer }}</textarea>
-                    </div>
-                </div>
-                
                 <hr>
 
                 <div class="field grouped">

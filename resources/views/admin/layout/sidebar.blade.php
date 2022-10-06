@@ -23,13 +23,18 @@
                     <span class="icon"><i class="mdi mdi-plus"></i></span>
                 </a>
                 <ul>
-                    <li class="{{ Request::is('admin/hotel/view')?'active':'' }}">
-                        <a href="#">
+                    <li class="{{ Request::is('admin/amenity/view')?'active':'' }}">
+                        <a href="{{ route('admin_amenity_view') }}">
                             <span class="icon"><i class="mdi mdi-table"></i></span>
                             <span class="menu-item-label">Amenities</span>
                         </a>
                     </li>
-                    
+                    <li class="{{ Request::is('admin/room/view')?'active':'' }}">
+                        <a href="{{ route('admin_room_view') }}">
+                            <span class="icon"><i class="mdi mdi-table"></i></span>
+                            <span class="menu-item-label">Rooms</span>
+                        </a>
+                    </li>
 
                 </ul>
             </li>
