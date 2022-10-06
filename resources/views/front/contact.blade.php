@@ -71,8 +71,8 @@
                             CONTACT US
                         </span>
                         <h2 class="text-[35px] font-semibold">
-                            Let's talk about <br />
-                            Love to hear from you!
+                            {{ $single_contact->contact_heading }} <br />
+
                         </h2>
                     </div>
                     <div class="flex flex-wrap justify-between mb-12 lg:mb-0">
@@ -88,7 +88,7 @@
                             <div>
                                 <h5 class="text-lg font-semibold mb-6">Our Location</h5>
                                 <p class="text-base text-body-color">
-                                    401 Broadway, 24th Floor, Orchard Cloud View, London
+                                    {{ $single_contact->contact_location }}
                                 </p>
                             </div>
                         </div>
@@ -101,10 +101,8 @@
                             </div>
                             <div>
                                 <h5 class="text-lg font-semibold mb-6">How Can We Help?</h5>
-                                <p class="text-base text-body-color">info@yourdomain.com</p>
-                                <p class="text-base text-body-color">
-                                    contact@yourdomain.com
-                                </p>
+                                <p class="text-base text-body-color">{{ $single_contact->contact_email }}</p>
+                                
                             </div>
                         </div>
                     </div>

@@ -96,3 +96,4 @@ Route::post('admin/contactus/update/{id}', [AdminPageController::class, 'contact
 
 Route::get('admin/contact/view', [AdminContactController::class, 'index'])->name('admin_contact_view')->middleware('admin:admin');
 Route::get('admin/contact/delete/{id}', [AdminContactController::class, 'delete'])->name('admin_contact_delete')->middleware('admin:admin');
+Route::post('admin/contact/update/{id}', [AdminContactController::class, 'update'])->name('admin_contact_update')->middleware('admin:admin');

@@ -5,12 +5,14 @@ namespace App\Http\Controllers\Front;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Contact;
+use App\Models\Page;
 
 class ContactController extends Controller
 {
     public function index()
     {
-        return view('front.contact');
+        $single_contact = Page::orderBy('id','desc')->first();
+        return view('front.contact',compact('single_contact'));
     }
     public function store(Request $request)
     {
