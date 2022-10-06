@@ -11,7 +11,7 @@ use App\Http\Controllers\Admin\AdminFeatureController;
 use App\Http\Controllers\Admin\AdminTestimonialController;
 use App\Http\Controllers\Admin\AdminPostController;
 use App\Http\Controllers\Admin\AdminFaqController;
-use App\Http\Controllers\Admin\AdminAboutController;
+use App\Http\Controllers\Admin\AdminPageController;
 use App\Http\Controllers\Admin\AdminContactController;
 
 use App\Http\Controllers\Front\HomeController;
@@ -87,8 +87,12 @@ Route::get('admin/faq/delete/{id}', [AdminFaqController::class, 'delete'])->name
 Route::get('admin/faq/edit/{id}', [AdminFaqController::class, 'edit'])->name('admin_faq_edit')->middleware('admin:admin');
 Route::post('admin/faq/update/{id}', [AdminFaqController::class, 'update'])->name('admin_faq_update')->middleware('admin:admin');
 
-Route::get('admin/about/view', [AdminAboutController::class, 'index'])->name('admin_about_view')->middleware('admin:admin');
-Route::post('admin/about/update/{id}', [AdminAboutController::class, 'update'])->name('admin_about_update')->middleware('admin:admin');
+Route::get('admin/about/view', [AdminPageController::class, 'about'])->name('admin_about_view')->middleware('admin:admin');
+Route::post('admin/about/update/{id}', [AdminPageController::class, 'about_update'])->name('admin_about_update')->middleware('admin:admin');
+
+Route::get('admin/contactus/view', [AdminPageController::class, 'contactus'])->name('admin_contactus_view')->middleware('admin:admin');
+Route::post('admin/contactus/update/{id}', [AdminPageController::class, 'contactus_update'])->name('admin_contactus_update')->middleware('admin:admin');
+
 
 Route::get('admin/contact/view', [AdminContactController::class, 'index'])->name('admin_contact_view')->middleware('admin:admin');
 Route::get('admin/contact/delete/{id}', [AdminContactController::class, 'delete'])->name('admin_contact_delete')->middleware('admin:admin');

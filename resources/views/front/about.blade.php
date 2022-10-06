@@ -89,11 +89,11 @@
                       text-dark
                       mb-6
                     ">
-                            {{ $single_about->heading }}
+                            {{ $single_about->about_heading }}
 
                             </h2>
                             <p class="text-base text-body-color mb-9 leading-relaxed">
-                                {{ $single_about->content }}
+                                {{ $single_about->about_content }}
                             </p>
                             <a href="javascript:void(0)" class="
                       inline-flex

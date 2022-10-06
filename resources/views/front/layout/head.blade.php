@@ -8,8 +8,12 @@
 <link rel="stylesheet" href="{{ asset('front_assets/css/animate.css')}}" />
 <link rel="stylesheet" href="{{ asset('front_assets/css/tailwind.css')}}" />
 
+
 <!-- ==== WOW JS ==== -->
 <script src="{{ asset('front_assets/js/wow.min.js')}}"></script>
+
+
+
 <script>
     new WOW().init();
 </script>

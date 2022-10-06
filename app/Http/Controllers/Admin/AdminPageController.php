@@ -4,22 +4,22 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\About;
+use App\Models\Page;
 
 
-class AdminAboutController extends Controller
+class AdminPageController extends Controller
 {
-    public function index()
+    public function about()
     {
-        $single_about = About::orderBy('id','desc')->first();
+        $single_about = Page::orderBy('id','desc')->first();
 
         return view('admin.about.view',compact('single_about'));
     }
 
-    public function update(Request $request,$id) 
+    public function about_update(Request $request,$id) 
     {
 
-        $about = About::where('id',$id)->first();
+        $about = Page::where('id',$id)->first();
 
         $request->validate([
             'heading' => 'required',
@@ -27,9 +27,9 @@ class AdminAboutController extends Controller
             'status' => 'required',
         ]);
         
-        $about->heading = $request->heading;
-        $about->content = $request->content;
-        $about->status = $request->status;
+        $about->about_heading = $request->heading;
+        $about->about_content = $request->content;
+        $about->about_status = $request->status;
         $about->update();
 
         return redirect()->route('admin_about_view')->with('success','about is updated successfully.');

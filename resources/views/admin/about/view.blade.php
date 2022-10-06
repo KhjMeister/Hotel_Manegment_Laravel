@@ -26,7 +26,7 @@
                     <div class="field-body">
                         <div class="field">
                             <div class="control icons-left">
-                                <input value="{{ $single_about->heading }}" class="input" type="text"
+                                <input value="{{ $single_about->about_heading }}" class="input" type="text"
                                     placeholder="Heading" name="heading">
                                 <span class="icon left"><i class="mdi mdi-view-list"></i></span>
                             </div>
@@ -39,7 +39,7 @@
                     <label class="label">Content</label>
                     <div class="control">
                         <textarea name="content" class="ckeditor input" type="text" class="textarea"
-                            placeholder="Content">{{ $single_about->content }}</textarea>
+                            placeholder="Content">{{ $single_about->about_content }}</textarea>
                     </div>
                 </div>
                 
@@ -48,8 +48,8 @@
                     <div class="control">
                       <div class="select">
                         <select name="status">
-                          <option value="1" >Active</option>
-                          <option value="0" @if($single_about->status==0) selected @endif>Deactive</option>
+                          <option value="1" @if($single_about->about_status==1) selected @endif>Active</option>
+                          <option value="0" @if($single_about->about_status==0) selected @endif>Deactive</option>
                         </select>
                       </div>
                     </div>
