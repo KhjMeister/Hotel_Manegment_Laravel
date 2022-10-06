@@ -28,10 +28,105 @@ class AdminPageController extends Controller
         ]);
         
         $about->about_heading = $request->heading;
-        $about->about_content = $request->content;
+
         $about->about_status = $request->status;
         $about->update();
 
-        return redirect()->route('admin_about_view')->with('success','about is updated successfully.');
+        return redirect()->route('admin_about_view')->with('success','About page is updated successfully.');
+    }
+
+
+    public function cart()
+    {
+        $single_cart = Page::orderBy('id','desc')->first();
+
+        return view('admin.cart.view',compact('single_cart'));
+    }
+
+    public function cart_update(Request $request,$id) 
+    {
+
+        $cart = Page::where('id',$id)->first();
+
+        $request->validate([
+            'heading' => 'required',
+            'status' => 'required',
+        ]);
+        
+        $cart->cart_heading = $request->heading;
+        $cart->cart_status = $request->status;
+        $cart->update();
+
+        return redirect()->route('admin_cart_view')->with('success','Cart page is updated successfully.');
+    }
+
+    public function checkout()
+    {
+        $single_checkout = Page::orderBy('id','desc')->first();
+
+        return view('admin.checkout.view',compact('single_checkout'));
+    }
+
+    public function checkout_update(Request $request,$id) 
+    {
+
+        $checkout = Page::where('id',$id)->first();
+
+        $request->validate([
+            'heading' => 'required',
+            'status' => 'required',
+        ]);
+        
+        $checkout->checkout_heading = $request->heading;
+        $checkout->checkout_status = $request->status;
+        $checkout->update();
+
+        return redirect()->route('admin_checkout_view')->with('success','checkout page is updated successfully.');
+    }
+    public function signin()
+    {
+        $single_signin = Page::orderBy('id','desc')->first();
+
+        return view('admin.signin.view',compact('single_signin'));
+    }
+
+    public function signin_update(Request $request,$id) 
+    {
+
+        $signin = Page::where('id',$id)->first();
+
+        $request->validate([
+            'heading' => 'required',
+            'status' => 'required',
+        ]);
+        
+        $signin->signin_heading = $request->heading;
+        $signin->signin_status = $request->status;
+        $signin->update();
+
+        return redirect()->route('admin_signin_view')->with('success','signin page is updated successfully.');
+    }
+    public function signup()
+    {
+        $single_signup = Page::orderBy('id','desc')->first();
+
+        return view('admin.signup.view',compact('single_signup'));
+    }
+
+    public function signup_update(Request $request,$id) 
+    {
+
+        $signup = Page::where('id',$id)->first();
+
+        $request->validate([
+            'heading' => 'required',
+            'status' => 'required',
+        ]);
+        
+        $signup->signup_heading = $request->heading;
+        $signup->signup_status = $request->status;
+        $signup->update();
+
+        return redirect()->route('admin_signup_view')->with('success','signup page is updated successfully.');
     }
 }

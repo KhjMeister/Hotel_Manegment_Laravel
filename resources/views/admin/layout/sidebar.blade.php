@@ -16,6 +16,25 @@
         </ul>
         <p class="menu-label">Pages</p>
         <ul class="menu-list">
+            <li>
+                <a class="dropdown">
+                    <span class="icon"><i class="mdi mdi-view-list"></i></span>
+                    <span class="menu-item-label">Hotel Section</span>
+                    <span class="icon"><i class="mdi mdi-plus"></i></span>
+                </a>
+                <ul>
+                    <li class="{{ Request::is('admin/hotel/view')?'active':'' }}">
+                        <a href="#">
+                            <span class="icon"><i class="mdi mdi-table"></i></span>
+                            <span class="menu-item-label">Amenities</span>
+                        </a>
+                    </li>
+                    
+
+                </ul>
+            </li>
+
+
             <li class="{{ Request::is('admin/profile')?'active':'' }}">
                 <a href="{{ route('admin_profile') }}">
                     <span class="icon"><i class="mdi mdi-account-circle"></i></span>
@@ -78,6 +97,30 @@
                         <a href="{{ route('admin_contact_view') }}">
                             <span class="icon"><i class="mdi mdi-table"></i></span>
                             <span class="menu-item-label">Contact Us</span>
+                        </a>
+                    </li>
+                    <li class="{{ Request::is('admin/cart/view')?'active':'' }}">
+                        <a href="{{ route('admin_cart_view') }}">
+                            <span class="icon"><i class="mdi mdi-table"></i></span>
+                            <span class="menu-item-label">Cart</span>
+                        </a>
+                    </li>
+                    <li class="{{ Request::is('admin/checkout/view')?'active':'' }}">
+                        <a href="{{ route('admin_checkout_view') }}">
+                            <span class="icon"><i class="mdi mdi-table"></i></span>
+                            <span class="menu-item-label">Checkout</span>
+                        </a>
+                    </li>
+                    <li class="{{ Request::is('admin/signin/view')?'active':'' }}">
+                        <a href="{{ route('admin_signin_view') }}">
+                            <span class="icon"><i class="mdi mdi-table"></i></span>
+                            <span class="menu-item-label">Sign In</span>
+                        </a>
+                    </li>
+                    <li class="{{ Request::is('admin/signup/view')?'active':'' }}">
+                        <a href="{{ route('admin_signup_view') }}">
+                            <span class="icon"><i class="mdi mdi-table"></i></span>
+                            <span class="menu-item-label">Sign Up</span>
                         </a>
                     </li>
                 </ul>

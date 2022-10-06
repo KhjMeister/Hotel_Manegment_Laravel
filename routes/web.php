@@ -13,11 +13,13 @@ use App\Http\Controllers\Admin\AdminPostController;
 use App\Http\Controllers\Admin\AdminFaqController;
 use App\Http\Controllers\Admin\AdminPageController;
 use App\Http\Controllers\Admin\AdminContactController;
+use App\Http\Controllers\Admin\AdminAmenityController;
 
 use App\Http\Controllers\Front\HomeController;
 use App\Http\Controllers\Front\AboutController;
 use App\Http\Controllers\Front\BlogController;
 use App\Http\Controllers\Front\ContactController;
+use App\Http\Controllers\Front\BookingController;
 
 
 // Front
@@ -27,6 +29,11 @@ Route::get('/contact', [ContactController::class, 'index'])->name('contact');
 Route::post('/contact', [ContactController::class, 'store'])->name('contact_submit');
 Route::get('/blog', [BlogController::class, 'index'])->name('blog');
 Route::get('/post/{id}', [BlogController::class, 'single'])->name('post');
+Route::get('/cart', [BookingController::class, 'cart_view'])->name('cart');
+Route::get('/checkout', [BookingController::class, 'checkout'])->name('checkout');
+Route::post('/payment', [BookingController::class, 'payment'])->name('payment');
+
+
 
 Route::get('/dashboard', [WebsiteController::class, 'dashboard'])->name('dashboard')->middleware('auth');
 Route::get('/login', [WebsiteController::class, 'login'])->name('login');
@@ -93,7 +100,25 @@ Route::post('admin/about/update/{id}', [AdminPageController::class, 'about_updat
 Route::get('admin/contactus/view', [AdminPageController::class, 'contactus'])->name('admin_contactus_view')->middleware('admin:admin');
 Route::post('admin/contactus/update/{id}', [AdminPageController::class, 'contactus_update'])->name('admin_contactus_update')->middleware('admin:admin');
 
-
 Route::get('admin/contact/view', [AdminContactController::class, 'index'])->name('admin_contact_view')->middleware('admin:admin');
 Route::get('admin/contact/delete/{id}', [AdminContactController::class, 'delete'])->name('admin_contact_delete')->middleware('admin:admin');
 Route::post('admin/contact/update/{id}', [AdminContactController::class, 'update'])->name('admin_contact_update')->middleware('admin:admin');
+
+Route::get('admin/cart/view', [AdminPageController::class, 'cart'])->name('admin_cart_view')->middleware('admin:admin');
+Route::post('admin/cart/update/{id}', [AdminPageController::class, 'cart_update'])->name('admin_cart_update')->middleware('admin:admin');
+
+Route::get('admin/checkout/view', [AdminPageController::class, 'checkout'])->name('admin_checkout_view')->middleware('admin:admin');
+Route::post('admin/checkout/update/{id}', [AdminPageController::class, 'checkout_update'])->name('admin_checkout_update')->middleware('admin:admin');
+
+Route::get('admin/signin/view', [AdminPageController::class, 'signin'])->name('admin_signin_view')->middleware('admin:admin');
+Route::post('admin/signin/update/{id}', [AdminPageController::class, 'signin_update'])->name('admin_signin_update')->middleware('admin:admin');
+
+Route::get('admin/signup/view', [AdminPageController::class, 'signup'])->name('admin_signup_view')->middleware('admin:admin');
+Route::post('admin/signup/update/{id}', [AdminPageController::class, 'signup_update'])->name('admin_signup_update')->middleware('admin:admin');
+
+Route::get('admin/amenity/view', [AdminAmenityController::class, 'index'])->name('admin_amenity_view')->middleware('admin:admin');
+Route::get('admin/amenity/add', [AdminAmenityController::class, 'create'])->name('admin_amenity_add')->middleware('admin:admin');
+Route::post('admin/amenity/submit', [AdminAmenityController::class, 'store'])->name('admin_amenity_submit')->middleware('admin:admin');
+Route::get('admin/amenity/delete/{id}', [AdminAmenityController::class, 'delete'])->name('admin_amenity_delete')->middleware('admin:admin');
+Route::get('admin/amenity/edit/{id}', [AdminAmenityController::class, 'edit'])->name('admin_amenity_edit')->middleware('admin:admin');
+Route::post('admin/amenity/update/{id}', [AdminAmenityController::class, 'update'])->name('admin_amenity_update')->middleware('admin:admin');
