@@ -38,20 +38,6 @@
 
                 </ul>
             </li>
-
-
-            <li class="{{ Request::is('admin/profile')?'active':'' }}">
-                <a href="{{ route('admin_profile') }}">
-                    <span class="icon"><i class="mdi mdi-account-circle"></i></span>
-                    <span class="menu-item-label">Profile</span>
-                </a>
-            </li>
-            <li class="{{ Request::is('admin/post/view')?'active':'' }}">
-                <a href="{{ route('admin_post_view') }}">
-                    <span class="icon"><i class="mdi mdi-post"></i></span>
-                    <span class="menu-item-label">Posts</span>
-                </a>
-            </li>
             <li>
                 <a class="dropdown">
                     <span class="icon"><i class="mdi mdi-view-list"></i></span>
@@ -92,6 +78,12 @@
                     <span class="icon"><i class="mdi mdi-plus"></i></span>
                 </a>
                 <ul>
+                    <li class="{{ Request::is('admin/room/page')?'active':'' }}">
+                        <a href="{{ route('admin_page_room_view') }}">
+                            <span class="icon"><i class="mdi mdi-table"></i></span>
+                            <span class="menu-item-label">Rooms</span>
+                        </a>
+                    </li>
                     <li class="{{ Request::is('admin/about/view')?'active':'' }}">
                         <a href="{{ route('admin_about_view') }}">
                             <span class="icon"><i class="mdi mdi-table"></i></span>
@@ -129,6 +121,18 @@
                         </a>
                     </li>
                 </ul>
+            </li>
+            <li class="{{ Request::is('admin/post/view')?'active':'' }}">
+                <a href="{{ route('admin_post_view') }}">
+                    <span class="icon"><i class="mdi mdi-post"></i></span>
+                    <span class="menu-item-label">Posts</span>
+                </a>
+            </li>
+            <li class="{{ Request::is('admin/profile')?'active':'' }}">
+                <a href="{{ route('admin_profile') }}">
+                    <span class="icon"><i class="mdi mdi-account-circle"></i></span>
+                    <span class="menu-item-label">Profile</span>
+                </a>
             </li>
         </ul>
         {{-- <p class="menu-label">About</p>

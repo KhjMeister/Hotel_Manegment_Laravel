@@ -21,6 +21,11 @@ use App\Http\Controllers\Front\AboutController;
 use App\Http\Controllers\Front\BlogController;
 use App\Http\Controllers\Front\ContactController;
 use App\Http\Controllers\Front\BookingController;
+use App\Http\Controllers\Front\RoomController;
+
+use App\Http\Controllers\Customer\CustomerAuthController;
+use App\Http\Controllers\Customer\CustomerHomeController;
+use App\Http\Controllers\Customer\CustomerProfileController;
 
 
 // Front
@@ -33,104 +38,129 @@ Route::get('/post/{id}', [BlogController::class, 'single'])->name('post');
 Route::get('/cart', [BookingController::class, 'cart_view'])->name('cart');
 Route::get('/checkout', [BookingController::class, 'checkout'])->name('checkout');
 Route::post('/payment', [BookingController::class, 'payment'])->name('payment');
+Route::get('/room', [RoomController::class, 'index'])->name('room');
+Route::get('/room/{id}', [RoomController::class, 'single_room'])->name('room_detail');
 
 
 
-Route::get('/dashboard', [WebsiteController::class, 'dashboard'])->name('dashboard')->middleware('auth');
-Route::get('/login', [WebsiteController::class, 'login'])->name('login');
-Route::get('/register', [WebsiteController::class, 'registration'])->name('register');
-Route::post('/login-submit', [WebsiteController::class, 'login_submit'])->name('login_submit');
-Route::get('/logout', [WebsiteController::class, 'logout'])->name('logout');
+// customer
+Route::get('/login', [CustomerAuthController::class, 'login'])->name('customer_login');
+Route::post('/login-submit', [CustomerAuthController::class, 'login_submit'])->name('customer_login_submit');
+Route::get('/customer/logout', [CustomerAuthController::class, 'logout'])->name('customer_logout');
+Route::get('/signup', [CustomerAuthController::class, 'signup'])->name('customer_signup');
+Route::post('/signup-submit', [CustomerAuthController::class, 'signup_submit'])->name('customer_signup_submit');
+Route::get('/signup-verify/{email}/{token}', [CustomerAuthController::class, 'signup_verify'])->name('customer_signup_verify');
+Route::get('/forget-password', [CustomerAuthController::class, 'forget_password'])->name('customer_forget_password');
+Route::post('/forget-password-submit', [CustomerAuthController::class, 'forget_password_submit'])->name('customer_forget_password_submit');
+Route::get('/reset-password/{token}/{email}', [CustomerAuthController::class, 'reset_password'])->name('customer_reset_password');
+Route::post('/reset-password-submit', [CustomerAuthController::class, 'reset_password_submit'])->name('customer_reset_password_submit');
 
 
+/* Customer - Middleware */
+Route::group(['middleware' =>['customer:customer']], function(){
+    Route::get('/customer/home', [CustomerHomeController::class, 'index'])->name('customer_home');
+    Route::get('/customer/profile', [CustomerProfileController::class, 'index'])->name('customer_profile');
+
+});
 
 // Admin
-Route::get('admin/home', [AdminDashboardController::class, 'index'])->name('admin_home')->middleware('admin:admin');
-
-Route::get('admin/profile', [AdminProfileController::class, 'index'])->name('admin_profile')->middleware('admin:admin');
-Route::post('admin/profile-edit', [AdminProfileController::class, 'profile_submit'])->name('admin_profile_submit')->middleware('admin:admin');
 
 Route::get('admin/login', [AdminLoginController::class, 'index'])->name('admin_login');
 Route::post('admin/login-submit', [AdminLoginController::class, 'login_submit'])->name('admin_login_submit');
-Route::get('admin/logout', [AdminLoginController::class, 'logout'])->name('admin_logout')->middleware('admin:admin');
-
 Route::get('admin/forget_password', [AdminLoginController::class, 'forget_password'])->name('admin_forget_password');
 Route::post('admin/forget_password_submit', [AdminLoginController::class, 'forget_password_submit'])->name('admin_forget_password_submit');
-
 Route::get('admin/reset-password/{token}/{email}', [AdminLoginController::class, 'reset_password'])->name('admin_reset_password');
 Route::post('admin/reset_password_submit', [AdminLoginController::class, 'reset_password_submit'])->name('admin_reset_password_submit');
 
-Route::get('admin/slide/view', [AdminSlideController::class, 'index'])->name('admin_slide_view')->middleware('admin:admin');
-Route::get('admin/slide/add', [AdminSlideController::class, 'create'])->name('admin_slide_add')->middleware('admin:admin');
-Route::post('admin/slide/submit', [AdminSlideController::class, 'store'])->name('admin_slide_submit')->middleware('admin:admin');
-Route::get('admin/slide/delete/{id}', [AdminSlideController::class, 'delete'])->name('admin_slide_delete')->middleware('admin:admin');
-Route::get('admin/slide/edit/{id}', [AdminSlideController::class, 'edit'])->name('admin_slide_edit')->middleware('admin:admin');
-Route::post('admin/slide/update/{id}', [AdminSlideController::class, 'update'])->name('admin_slide_update')->middleware('admin:admin');
+/* Admin - Middleware */
+Route::group(['middleware' =>['admin:admin']], function(){
 
-Route::get('admin/feature/view', [AdminFeatureController::class, 'index'])->name('admin_feature_view')->middleware('admin:admin');
-Route::get('admin/feature/add', [AdminFeatureController::class, 'create'])->name('admin_feature_add')->middleware('admin:admin');
-Route::post('admin/feature/submit', [AdminFeatureController::class, 'store'])->name('admin_feature_submit')->middleware('admin:admin');
-Route::get('admin/feature/delete/{id}', [AdminFeatureController::class, 'delete'])->name('admin_feature_delete')->middleware('admin:admin');
-Route::get('admin/feature/edit/{id}', [AdminFeatureController::class, 'edit'])->name('admin_feature_edit')->middleware('admin:admin');
-Route::post('admin/feature/update/{id}', [AdminFeatureController::class, 'update'])->name('admin_feature_update')->middleware('admin:admin');
+    Route::get('admin/logout', [AdminLoginController::class, 'logout'])->name('admin_logout');
 
-Route::get('admin/testimonial/view', [AdminTestimonialController::class, 'index'])->name('admin_testimonial_view')->middleware('admin:admin');
-Route::get('admin/testimonial/add', [AdminTestimonialController::class, 'create'])->name('admin_testimonial_add')->middleware('admin:admin');
-Route::post('admin/testimonial/submit', [AdminTestimonialController::class, 'store'])->name('admin_testimonial_submit')->middleware('admin:admin');
-Route::get('admin/testimonial/delete/{id}', [AdminTestimonialController::class, 'delete'])->name('admin_testimonial_delete')->middleware('admin:admin');
-Route::get('admin/testimonial/edit/{id}', [AdminTestimonialController::class, 'edit'])->name('admin_testimonial_edit')->middleware('admin:admin');
-Route::post('admin/testimonial/update/{id}', [AdminTestimonialController::class, 'update'])->name('admin_testimonial_update')->middleware('admin:admin');
+    Route::get('admin/home', [AdminDashboardController::class, 'index'])->name('admin_home');
+    Route::get('admin/profile', [AdminProfileController::class, 'index'])->name('admin_profile');
+    Route::post('admin/profile-edit', [AdminProfileController::class, 'profile_submit'])->name('admin_profile_submit');
+    
+    Route::get('admin/slide/view', [AdminSlideController::class, 'index'])->name('admin_slide_view');
+    Route::get('admin/slide/add', [AdminSlideController::class, 'create'])->name('admin_slide_add');
+    Route::post('admin/slide/submit', [AdminSlideController::class, 'store'])->name('admin_slide_submit');
+    Route::get('admin/slide/delete/{id}', [AdminSlideController::class, 'delete'])->name('admin_slide_delete');
+    Route::get('admin/slide/edit/{id}', [AdminSlideController::class, 'edit'])->name('admin_slide_edit');
+    Route::post('admin/slide/update/{id}', [AdminSlideController::class, 'update'])->name('admin_slide_update');
+    
+    Route::get('admin/feature/view', [AdminFeatureController::class, 'index'])->name('admin_feature_view');
+    Route::get('admin/feature/add', [AdminFeatureController::class, 'create'])->name('admin_feature_add');
+    Route::post('admin/feature/submit', [AdminFeatureController::class, 'store'])->name('admin_feature_submit');
+    Route::get('admin/feature/delete/{id}', [AdminFeatureController::class, 'delete'])->name('admin_feature_delete');
+    Route::get('admin/feature/edit/{id}', [AdminFeatureController::class, 'edit'])->name('admin_feature_edit');
+    Route::post('admin/feature/update/{id}', [AdminFeatureController::class, 'update'])->name('admin_feature_update');
+    
+    Route::get('admin/testimonial/view', [AdminTestimonialController::class, 'index'])->name('admin_testimonial_view');
+    Route::get('admin/testimonial/add', [AdminTestimonialController::class, 'create'])->name('admin_testimonial_add');
+    Route::post('admin/testimonial/submit', [AdminTestimonialController::class, 'store'])->name('admin_testimonial_submit');
+    Route::get('admin/testimonial/delete/{id}', [AdminTestimonialController::class, 'delete'])->name('admin_testimonial_delete');
+    Route::get('admin/testimonial/edit/{id}', [AdminTestimonialController::class, 'edit'])->name('admin_testimonial_edit');
+    Route::post('admin/testimonial/update/{id}', [AdminTestimonialController::class, 'update'])->name('admin_testimonial_update');
+    
+    Route::get('admin/post/view', [AdminPostController::class, 'index'])->name('admin_post_view');
+    Route::get('admin/post/add', [AdminPostController::class, 'create'])->name('admin_post_add');
+    Route::post('admin/post/submit', [AdminPostController::class, 'store'])->name('admin_post_submit');
+    Route::get('admin/post/delete/{id}', [AdminPostController::class, 'delete'])->name('admin_post_delete');
+    Route::get('admin/post/edit/{id}', [AdminPostController::class, 'edit'])->name('admin_post_edit');
+    Route::post('admin/post/update/{id}', [AdminPostController::class, 'update'])->name('admin_post_update');
+    
+    Route::get('admin/faq/view', [AdminFaqController::class, 'index'])->name('admin_faq_view');
+    Route::get('admin/faq/add', [AdminFaqController::class, 'create'])->name('admin_faq_add');
+    Route::post('admin/faq/submit', [AdminFaqController::class, 'store'])->name('admin_faq_submit');
+    Route::get('admin/faq/delete/{id}', [AdminFaqController::class, 'delete'])->name('admin_faq_delete');
+    Route::get('admin/faq/edit/{id}', [AdminFaqController::class, 'edit'])->name('admin_faq_edit');
+    Route::post('admin/faq/update/{id}', [AdminFaqController::class, 'update'])->name('admin_faq_update');
+    
+    Route::get('admin/about/view', [AdminPageController::class, 'about'])->name('admin_about_view');
+    Route::post('admin/about/update/{id}', [AdminPageController::class, 'about_update'])->name('admin_about_update');
+    
+    Route::get('admin/contactus/view', [AdminPageController::class, 'contactus'])->name('admin_contactus_view');
+    Route::post('admin/contactus/update/{id}', [AdminPageController::class, 'contactus_update'])->name('admin_contactus_update');
+    
+    Route::get('admin/contact/view', [AdminContactController::class, 'index'])->name('admin_contact_view');
+    Route::get('admin/contact/delete/{id}', [AdminContactController::class, 'delete'])->name('admin_contact_delete');
+    Route::post('admin/contact/update/{id}', [AdminContactController::class, 'update'])->name('admin_contact_update');
+    
+    Route::get('admin/cart/view', [AdminPageController::class, 'cart'])->name('admin_cart_view');
+    Route::post('admin/cart/update/{id}', [AdminPageController::class, 'cart_update'])->name('admin_cart_update');
+    
+    Route::get('admin/room/page', [AdminPageController::class, 'room'])->name('admin_page_room_view');
+    Route::post('admin/page/update/{id}', [AdminPageController::class, 'room_update'])->name('admin_page_room_update');
+    
+    Route::get('admin/checkout/view', [AdminPageController::class, 'checkout'])->name('admin_checkout_view');
+    Route::post('admin/checkout/update/{id}', [AdminPageController::class, 'checkout_update'])->name('admin_checkout_update');
+    
+    Route::get('admin/signin/view', [AdminPageController::class, 'signin'])->name('admin_signin_view');
+    Route::post('admin/signin/update/{id}', [AdminPageController::class, 'signin_update'])->name('admin_signin_update');
+    
+    Route::get('admin/signup/view', [AdminPageController::class, 'signup'])->name('admin_signup_view');
+    Route::post('admin/signup/update/{id}', [AdminPageController::class, 'signup_update'])->name('admin_signup_update');
+    
+    Route::get('admin/amenity/view', [AdminAmenityController::class, 'index'])->name('admin_amenity_view');
+    Route::get('admin/amenity/add', [AdminAmenityController::class, 'create'])->name('admin_amenity_add');
+    Route::post('admin/amenity/submit', [AdminAmenityController::class, 'store'])->name('admin_amenity_submit');
+    Route::get('admin/amenity/delete/{id}', [AdminAmenityController::class, 'delete'])->name('admin_amenity_delete');
+    Route::get('admin/amenity/edit/{id}', [AdminAmenityController::class, 'edit'])->name('admin_amenity_edit');
+    Route::post('admin/amenity/update/{id}', [AdminAmenityController::class, 'update'])->name('admin_amenity_update');
+    
+    Route::get('admin/room/view', [AdminRoomController::class, 'index'])->name('admin_room_view');
+    Route::get('admin/room/add', [AdminRoomController::class, 'create'])->name('admin_room_add');
+    Route::post('admin/room/submit', [AdminRoomController::class, 'store'])->name('admin_room_submit');
+    Route::get('admin/room/delete/{id}', [AdminRoomController::class, 'delete'])->name('admin_room_delete');
+    Route::get('admin/room/edit/{id}', [AdminRoomController::class, 'edit'])->name('admin_room_edit');
+    Route::post('admin/room/update/{id}', [AdminRoomController::class, 'update'])->name('admin_room_update');
+    
+    Route::get('/admin/room/gallery/{id}', [AdminRoomController::class, 'gallery'])->name('admin_room_gallery');
+    Route::post('/admin/room/gallery/store/{id}', [AdminRoomController::class, 'gallery_store'])->name('admin_room_gallery_store');
+    Route::get('/admin/room/gallery/delete/{id}', [AdminRoomController::class, 'gallery_delete'])->name('admin_room_gallery_delete');
+    
 
-Route::get('admin/post/view', [AdminPostController::class, 'index'])->name('admin_post_view')->middleware('admin:admin');
-Route::get('admin/post/add', [AdminPostController::class, 'create'])->name('admin_post_add')->middleware('admin:admin');
-Route::post('admin/post/submit', [AdminPostController::class, 'store'])->name('admin_post_submit')->middleware('admin:admin');
-Route::get('admin/post/delete/{id}', [AdminPostController::class, 'delete'])->name('admin_post_delete')->middleware('admin:admin');
-Route::get('admin/post/edit/{id}', [AdminPostController::class, 'edit'])->name('admin_post_edit')->middleware('admin:admin');
-Route::post('admin/post/update/{id}', [AdminPostController::class, 'update'])->name('admin_post_update')->middleware('admin:admin');
 
-Route::get('admin/faq/view', [AdminFaqController::class, 'index'])->name('admin_faq_view')->middleware('admin:admin');
-Route::get('admin/faq/add', [AdminFaqController::class, 'create'])->name('admin_faq_add')->middleware('admin:admin');
-Route::post('admin/faq/submit', [AdminFaqController::class, 'store'])->name('admin_faq_submit')->middleware('admin:admin');
-Route::get('admin/faq/delete/{id}', [AdminFaqController::class, 'delete'])->name('admin_faq_delete')->middleware('admin:admin');
-Route::get('admin/faq/edit/{id}', [AdminFaqController::class, 'edit'])->name('admin_faq_edit')->middleware('admin:admin');
-Route::post('admin/faq/update/{id}', [AdminFaqController::class, 'update'])->name('admin_faq_update')->middleware('admin:admin');
 
-Route::get('admin/about/view', [AdminPageController::class, 'about'])->name('admin_about_view')->middleware('admin:admin');
-Route::post('admin/about/update/{id}', [AdminPageController::class, 'about_update'])->name('admin_about_update')->middleware('admin:admin');
+});
 
-Route::get('admin/contactus/view', [AdminPageController::class, 'contactus'])->name('admin_contactus_view')->middleware('admin:admin');
-Route::post('admin/contactus/update/{id}', [AdminPageController::class, 'contactus_update'])->name('admin_contactus_update')->middleware('admin:admin');
-
-Route::get('admin/contact/view', [AdminContactController::class, 'index'])->name('admin_contact_view')->middleware('admin:admin');
-Route::get('admin/contact/delete/{id}', [AdminContactController::class, 'delete'])->name('admin_contact_delete')->middleware('admin:admin');
-Route::post('admin/contact/update/{id}', [AdminContactController::class, 'update'])->name('admin_contact_update')->middleware('admin:admin');
-
-Route::get('admin/cart/view', [AdminPageController::class, 'cart'])->name('admin_cart_view')->middleware('admin:admin');
-Route::post('admin/cart/update/{id}', [AdminPageController::class, 'cart_update'])->name('admin_cart_update')->middleware('admin:admin');
-
-Route::get('admin/checkout/view', [AdminPageController::class, 'checkout'])->name('admin_checkout_view')->middleware('admin:admin');
-Route::post('admin/checkout/update/{id}', [AdminPageController::class, 'checkout_update'])->name('admin_checkout_update')->middleware('admin:admin');
-
-Route::get('admin/signin/view', [AdminPageController::class, 'signin'])->name('admin_signin_view')->middleware('admin:admin');
-Route::post('admin/signin/update/{id}', [AdminPageController::class, 'signin_update'])->name('admin_signin_update')->middleware('admin:admin');
-
-Route::get('admin/signup/view', [AdminPageController::class, 'signup'])->name('admin_signup_view')->middleware('admin:admin');
-Route::post('admin/signup/update/{id}', [AdminPageController::class, 'signup_update'])->name('admin_signup_update')->middleware('admin:admin');
-
-Route::get('admin/amenity/view', [AdminAmenityController::class, 'index'])->name('admin_amenity_view')->middleware('admin:admin');
-Route::get('admin/amenity/add', [AdminAmenityController::class, 'create'])->name('admin_amenity_add')->middleware('admin:admin');
-Route::post('admin/amenity/submit', [AdminAmenityController::class, 'store'])->name('admin_amenity_submit')->middleware('admin:admin');
-Route::get('admin/amenity/delete/{id}', [AdminAmenityController::class, 'delete'])->name('admin_amenity_delete')->middleware('admin:admin');
-Route::get('admin/amenity/edit/{id}', [AdminAmenityController::class, 'edit'])->name('admin_amenity_edit')->middleware('admin:admin');
-Route::post('admin/amenity/update/{id}', [AdminAmenityController::class, 'update'])->name('admin_amenity_update')->middleware('admin:admin');
-
-Route::get('admin/room/view', [AdminRoomController::class, 'index'])->name('admin_room_view')->middleware('admin:admin');
-Route::get('admin/room/add', [AdminRoomController::class, 'create'])->name('admin_room_add')->middleware('admin:admin');
-Route::post('admin/room/submit', [AdminRoomController::class, 'store'])->name('admin_room_submit')->middleware('admin:admin');
-Route::get('admin/room/delete/{id}', [AdminRoomController::class, 'delete'])->name('admin_room_delete')->middleware('admin:admin');
-Route::get('admin/room/edit/{id}', [AdminRoomController::class, 'edit'])->name('admin_room_edit')->middleware('admin:admin');
-Route::post('admin/room/update/{id}', [AdminRoomController::class, 'update'])->name('admin_room_update')->middleware('admin:admin');
-
-Route::get('/admin/room/gallery/{id}', [AdminRoomController::class, 'gallery'])->name('admin_room_gallery')->middleware('admin:admin');
-Route::post('/admin/room/gallery/store/{id}', [AdminRoomController::class, 'gallery_store'])->name('admin_room_gallery_store')->middleware('admin:admin');
-Route::get('/admin/room/gallery/delete/{id}', [AdminRoomController::class, 'gallery_delete'])->name('admin_room_gallery_delete')->middleware('admin:admin');

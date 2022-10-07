@@ -129,4 +129,19 @@ class AdminPageController extends Controller
 
         return redirect()->route('admin_signup_view')->with('success','signup page is updated successfully.');
     }
+
+    public function room()
+    {
+        $page_data = Page::where('id',1)->first();
+        return view('admin.room.page', compact('page_data'));
+    }
+
+    public function room_update(Request $request)
+    {
+        $obj = Page::where('id',1)->first();
+        $obj->room_heading = $request->room_heading;
+        $obj->update();
+
+        return redirect()->back()->with('success', 'Data is updated successfully.');
+    }
 }

@@ -30,12 +30,13 @@
                                 </a>
                                 <div
                                     class="submenu hidden relative lg:absolute w-[250px] top-full lg:top-[110%] left-0 rounded-sm lg:shadow-lg p-4 lg:block lg:opacity-0 lg:invisible group-hover:opacity-100 lg:group-hover:visible lg:group-hover:top-full bg-white transition-[top] duration-300">
+                                    @if ( $global_page_data->room_status==1 )
 
-                                    <a href="#"
+                                    <a href="{{ route('room') }}"
                                         class="block text-sm text-body-color rounded hover:text-primary py-[10px] px-4">
-                                        Regular Bed
+                                        Rooms
                                     </a>
-
+                                    @endif
 
                                     <a href="#"
                                         class="block text-sm text-body-color rounded hover:text-primary py-[10px] px-4">
@@ -95,13 +96,13 @@
                 </div>
                 <div class="sm:flex justify-end hidden pr-16 lg:pr-0">
                     @if ( $global_page_data->signin_status==1 )
-                    <a href="{{ route('login') }}"
+                    <a href="{{ route('customer_login') }}"
                         class="text-base font-medium text-white hover:opacity-70 py-3 px-7 loginBtn">
                         Sign In
                     </a>
                     @endif
                     @if ( $global_page_data->signup_status==1 )
-                    <a href="{{ route('register') }}"
+                    <a href="{{ route('customer_signup') }}"
                         class="text-base font-medium text-white bg-white bg-opacity-20 rounded-lg py-3 px-6 hover:bg-opacity-100 hover:text-dark signUpBtn duration-300 ease-in-out">
                         Sign Up
                     </a>

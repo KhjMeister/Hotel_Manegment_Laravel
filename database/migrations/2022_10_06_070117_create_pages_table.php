@@ -24,6 +24,8 @@ return new class extends Migration
             $table->integer('contact_status');
             $table->string('cart_heading');
             $table->integer('cart_status');
+            $table->text('room_heading');
+            $table->integer('room_status');
             $table->string('checkout_heading');
             $table->integer('checkout_status');
             $table->string('payment_heading');

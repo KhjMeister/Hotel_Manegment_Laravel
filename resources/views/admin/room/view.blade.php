@@ -94,7 +94,7 @@
                             </div>
                         </td>
                     </tr>
-                    <div id="sample-modal-{{ $i }}" class="modal modal-xl ">
+                    <div id="sample-modal-{{ $i }}" class="modal ">
                         <div class="modal-background --jb-modal-close"></div>
                         <div class="modal-card" style="width: 68% !important;">
                             <header class="modal-card-head">
@@ -119,7 +119,7 @@
                                                         class="w-full" />
                                                 </div>
 
-                                              
+
                                             </div>
 
                                             <div>
@@ -199,6 +199,7 @@
                                     </div>
                                 </div>
                             </section>
+
                         </div>
                     </div>
                     @endforeach

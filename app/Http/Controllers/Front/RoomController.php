@@ -4,12 +4,14 @@ namespace App\Http\Controllers\Front;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Room;
+
 
 class RoomController extends Controller
 {
     public function index()
     {
-        $room_all = Room::paginate(12);
+        $room_all = Room::orderBy('id','desc')->paginate(6);
         return view('front.room.view', compact('room_all'));
     }
 

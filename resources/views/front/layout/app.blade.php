@@ -25,6 +25,8 @@
     <!-- ====== All Scripts -->
 
     @include('front.layout.scripts')
+    @yield('page_scripts')
+
 </body>
 
 </html>

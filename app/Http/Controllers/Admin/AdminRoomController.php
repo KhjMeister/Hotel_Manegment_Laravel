@@ -11,7 +11,7 @@ class AdminRoomController extends Controller
 {
     public function index()
     {
-        $rooms = Room::paginate(4);
+        $rooms = Room::orderBy('id','desc')->paginate(3);
         return view('admin.room.view', compact('rooms'));
     }
 
@@ -62,7 +62,7 @@ class AdminRoomController extends Controller
         $obj->total_guests = $request->total_guests;
         $obj->save();
 
-        return redirect()->back()->with('success', 'Room is added successfully.');
+        return redirect()->route('admin_room_view')->with('success', 'Room is added successfully.');
 
     }
 
@@ -126,7 +126,7 @@ class AdminRoomController extends Controller
 
         $obj->update();
 
-        return redirect()->back()->with('success', 'Room is updated successfully.');
+        return redirect()->route('admin_room_view')->with('success', 'Room is updated successfully.');
     }
 
     public function delete($id)
