@@ -74,8 +74,8 @@
                       text-white
                       mb-5
                     ">
-                    {{ date('d m, Y', strtotime($post->created_at)) }}
-                            
+                            {{ date('d m, Y', strtotime($post->created_at)) }}
+
                         </span>
                         <h3>
                             <a href="blog-details.html" class="
@@ -105,7 +105,7 @@
 
         </div>
 
-        <div class="flex items-center space-x-1">
+        <div dir="rtl" class="flex items-center space-x-1">
             {{ $posts->links('vendor.pagination.tailwind') }}
         </div>
 

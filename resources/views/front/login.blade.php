@@ -66,7 +66,7 @@
             " data-wow-delay=".15s">
                     <div class="mb-10 text-center">
                         <a href="javascript:void(0)" class="inline-block max-w-[160px] mx-auto">
-                            <img src="{{ asset('front_assets/images/logo/logo.svg') }}" alt="logo" />
+                            <img src="{{ asset('front_assets/images/logo/logo.png') }}" alt="logo" />
                         </a>
                     </div>
                     <form action="{{ route('customer_login_submit') }}" method="post">

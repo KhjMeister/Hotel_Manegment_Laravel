@@ -7,6 +7,7 @@
 <link rel="shortcut icon" href="{{ asset('front_assets/images/favicon.png')}}" type="image/x-icon" />
 <link rel="stylesheet" href="{{ asset('front_assets/css/animate.css')}}" />
 <link rel="stylesheet" href="{{ asset('front_assets/css/tailwind.css')}}" />
+<link rel="stylesheet" href="{{ asset('css/iziToast.min.css') }}">
 
 
 <!-- ==== WOW JS ==== -->

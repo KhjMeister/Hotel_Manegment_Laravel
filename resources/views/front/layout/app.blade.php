@@ -27,6 +27,37 @@
     @include('front.layout.scripts')
     @yield('page_scripts')
 
+
+    @if($errors->any())
+    @foreach ($errors->all() as $error)
+    <script>
+        iziToast.show({
+    color: 'red',
+    message: "{{ $error }}"
+  });
+    </script>
+    @endforeach
+
+    @endif
+
+
+    @if(session()->has('success'))
+    <script>
+        iziToast.show({
+    color: 'green',
+    message: "{{ session('success') }}"
+  });
+    </script>
+    @endif
+
+    @if(session()->has('error'))
+    <script>
+        iziToast.show({
+    color: 'red',
+    message: "{{ session('error') }}"
+  });
+    </script>
+    @endif
 </body>
 
 </html>

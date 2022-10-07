@@ -7,8 +7,8 @@
     <div class="menu is-menu-main">
         <p class="menu-label">General</p>
         <ul class="menu-list">
-            <li class="{{ Request::is('admin/home')?'active':'' }}">
-                <a href="{{ route('admin_home') }}">
+            <li class="{{ Request::is('customer/home')?'active':'' }}">
+                <a href="{{ route('customer_home') }}">
                     <span class="icon"><i class="mdi mdi-desktop-mac"></i></span>
                     <span class="menu-item-label">Dashboard</span>
                 </a>
@@ -23,8 +23,8 @@
                     <span class="icon"><i class="mdi mdi-plus"></i></span>
                 </a>
                 <ul>
-                    <li class="{{ Request::is('admin/amenity/view')?'active':'' }}">
-                        <a href="{{ route('admin_amenity_view') }}">
+                    <li class="{{ Request::is('customer/amenity/view')?'active':'' }}">
+                        <a href="#">
                             <span class="icon"><i class="mdi mdi-table"></i></span>
                             <span class="menu-item-label">Amenities</span>
                         </a>
@@ -33,8 +33,8 @@
                 </ul>
             </li>
 
-            <li class="{{ Request::is('admin/profile')?'active':'' }}">
-                <a href="{{ route('admin_profile') }}">
+            <li class="{{ Request::is('customer/profile')?'active':'' }}">
+                <a href="{{ route('customer_profile') }}">
                     <span class="icon"><i class="mdi mdi-account-circle"></i></span>
                     <span class="menu-item-label">Profile</span>
                 </a>
@@ -50,13 +50,13 @@
                 </a>
             </li>
             <li>
-                <a href="https://justboil.me/tailwind-admin-templates" class="has-icon">
+                <a href="https://justboil.me/tailwind-customer-templates" class="has-icon">
                     <span class="icon"><i class="mdi mdi-help-circle"></i></span>
                     <span class="menu-item-label">About</span>
                 </a>
             </li>
             <li>
-                <a href="https://github.com/justboil/admin-one-tailwind" class="has-icon">
+                <a href="https://github.com/justboil/customer-one-tailwind" class="has-icon">
                     <span class="icon"><i class="mdi mdi-github-circle"></i></span>
                     <span class="menu-item-label">GitHub</span>
                 </a>
