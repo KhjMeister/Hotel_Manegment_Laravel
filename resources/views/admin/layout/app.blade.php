@@ -3,6 +3,7 @@
 
 <head>
   @include('admin.layout.head')
+  @yield('page_style')
 
 </head>
 

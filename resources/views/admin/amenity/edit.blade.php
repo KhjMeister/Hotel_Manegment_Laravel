@@ -4,11 +4,7 @@
 
 @section('page_scripts')
 <script src="//cdn.ckeditor.com/4.14.1/standard/ckeditor.js"></script>
-<script type="text/javascript">
-    $(document).ready(function () {
-        $('.ckeditor').ckeditor();
-    });
-</script>
+
 @endsection
 
 @section('right_top_button')
@@ -25,14 +21,14 @@
             <form method="POST" action="{{ route('admin_amenity_update',$single_amenity->id) }}"
                 enctype="multipart/form-data">
                 @csrf
-                
+
                 <div class="field">
                     <label class="label">Name</label>
                     <div class="field-body">
                         <div class="field">
                             <div class="control icons-left">
-                                <input value="{{ $single_amenity->name }}" class="input" type="text"
-                                    placeholder="Name" name="name">
+                                <input value="{{ $single_amenity->name }}" class="input" type="text" placeholder="Name"
+                                    name="name">
                                 <span class="icon left"><i class="mdi mdi-view-list"></i></span>
                             </div>
                         </div>

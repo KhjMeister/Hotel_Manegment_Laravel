@@ -64,9 +64,11 @@
                     @endforeach
 
 
+                    
                 </tbody>
             </table>
-            
+            {{ $posts->links('vendor.pagination.admin') }}
+
         </div>
     </div>
 </section>

@@ -4,11 +4,7 @@
 
 @section('page_scripts')
 <script src="//cdn.ckeditor.com/4.14.1/standard/ckeditor.js"></script>
-<script type="text/javascript">
-    $(document).ready(function () {
-        $('.ckeditor').ckeditor();
-    });
-</script>
+
 @endsection
 
 @section('right_top_button')
@@ -20,7 +16,6 @@
 
 <section class="section main-section">
     <div class="card mb-6">
-
         <div class="card-content ">
             <form method="POST" action="{{ route('admin_room_submit') }}" enctype="multipart/form-data">
                 @csrf
@@ -43,7 +38,8 @@
                         <div class="field-body">
                             <div class="field">
                                 <div class="control icons-left">
-                                    <input class="input" type="text" placeholder="Name" name="name">
+                                    <input value="{{ old('name') }}" class="input" type="text" placeholder="Name"
+                                        name="name">
                                     <span class="icon left"><i class="mdi mdi-view-list"></i></span>
                                 </div>
                             </div>
@@ -55,7 +51,8 @@
                         <div class="field-body">
                             <div class="field">
                                 <div class="control icons-left">
-                                    <input class="input" type="text" placeholder="Guests" name="total_guests">
+                                    <input value="{{ old('total_guests') }}" class="input" type="text"
+                                        placeholder="Guests" name="total_guests">
                                     <span class="icon left"><i class="mdi mdi-view-list"></i></span>
                                 </div>
                             </div>
@@ -67,7 +64,7 @@
                     <label class="label">Description</label>
                     <div class="control">
                         <textarea name="description" class="ckeditor input" type="text" class="textarea"
-                            placeholder="Description" rows="2"></textarea>
+                            placeholder="Description" rows="2">{{ old('description') }}</textarea>
                     </div>
                 </div>
                 <div class="field">
@@ -79,7 +76,7 @@
                             @php $i++; @endphp
                             <div class="control">
                                 <label class="checkbox">
-                                    <input type="checkbox" name="arr_amenities[]" value="{{ $item->id }}" checked="">
+                                    <input type="checkbox" name="arr_amenities[]" value="{{ $item->id }}">
                                     <span class="check"></span>
                                     <span class="control-label">{{ $item->name }}</span>
                                 </label>
@@ -95,7 +92,8 @@
                         <div class="field-body">
                             <div class="field">
                                 <div class="control icons-left">
-                                    <input class="input w-full" type="text" placeholder="Price" name="price">
+                                    <input class="input w-full" type="text" placeholder="Price"
+                                        value="{{ old('price') }}" name="price">
                                     <span class="icon left"><i class="mdi mdi-view-list"></i></span>
                                 </div>
                             </div>
@@ -107,8 +105,8 @@
                         <div class="field-body">
                             <div class="field">
                                 <div class="control icons-left">
-                                    <input class="input w-full" type="text" placeholder="Total Rooms"
-                                        name="total_rooms">
+                                    <input value="{{ old('total_rooms') }}" class="input w-full" type="text"
+                                        placeholder="Total Rooms" name="total_rooms">
                                     <span class="icon left"><i class="mdi mdi-view-list"></i></span>
                                 </div>
                             </div>
@@ -123,7 +121,8 @@
                         <div class="field-body">
                             <div class="field">
                                 <div class="control icons-left">
-                                    <input class="input" type="text" placeholder="Room Size" name="size">
+                                    <input value="{{ old('size') }}" class="input" type="text" placeholder="Room Size"
+                                        name="size">
                                     <span class="icon left"><i class="mdi mdi-view-list"></i></span>
                                 </div>
                             </div>
@@ -136,7 +135,8 @@
                         <div class="field-body">
                             <div class="field">
                                 <div class="control icons-left">
-                                    <input class="input" type="text" placeholder="Beds" name="total_beds">
+                                    <input class="input" type="text" placeholder="Beds" value="{{ old('total_beds') }}"
+                                        name="total_beds">
                                     <span class="icon left"><i class="mdi mdi-view-list"></i></span>
                                 </div>
                             </div>
@@ -150,7 +150,8 @@
                         <div class="field-body">
                             <div class="field">
                                 <div class="control icons-left">
-                                    <input class="input" type="text" placeholder="Bathrooms" name="total_bathrooms">
+                                    <input class="input" type="text" placeholder="Bathrooms"
+                                        value="{{ old('total_bathrooms') }}" name="total_bathrooms">
                                     <span class="icon left"><i class="mdi mdi-view-list"></i></span>
                                 </div>
                             </div>
@@ -162,7 +163,8 @@
                         <div class="field-body">
                             <div class="field">
                                 <div class="control icons-left">
-                                    <input class="input" type="text" placeholder="Balconies" name="total_balconies">
+                                    <input class="input" type="text" placeholder="Balconies"
+                                        value="{{ old('total_balconies') }}" name="total_balconies">
                                     <span class="icon left"><i class="mdi mdi-view-list"></i></span>
                                 </div>
                             </div>
@@ -170,10 +172,7 @@
                         </div>
                     </div>
                 </div>
-
-
                 <hr>
-
                 <div class="field grouped">
                     <div class="control">
                         <button type="submit" class="button green">
@@ -189,8 +188,6 @@
             </form>
         </div>
     </div>
-
-
 </section>
 
 

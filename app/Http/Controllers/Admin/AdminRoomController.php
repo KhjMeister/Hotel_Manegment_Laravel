@@ -11,7 +11,7 @@ class AdminRoomController extends Controller
 {
     public function index()
     {
-        $rooms = Room::get();
+        $rooms = Room::paginate(4);
         return view('admin.room.view', compact('rooms'));
     }
 
@@ -146,6 +146,7 @@ class AdminRoomController extends Controller
 
     public function gallery($id)
     {
+       
         $room_data = Room::where('id',$id)->first();
         $room_photos = RoomPhoto::where('room_id',$id)->get();
         return view('admin.room.gallery', compact('room_data','room_photos'));
@@ -153,6 +154,12 @@ class AdminRoomController extends Controller
 
     public function gallery_store(Request $request,$id)
     {
+        
+        $rooms_photo = RoomPhoto::where('room_id',$id)->get();
+        $wordCount = $rooms_photo->count();
+        if ($wordCount==5) {
+            return redirect()->back()->with('error','You already Have 5 of them first delete one to add another!');
+        }
         $request->validate([
             'photo' => 'required|image|mimes:jpg,jpeg,png,gif'
         ]);

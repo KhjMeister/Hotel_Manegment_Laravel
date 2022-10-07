@@ -4,11 +4,7 @@
 
 @section('page_scripts')
 <script src="//cdn.ckeditor.com/4.14.1/standard/ckeditor.js"></script>
-<script type="text/javascript">
-    $(document).ready(function () {
-        $('.ckeditor').ckeditor();
-    });
-</script>
+
 @endsection
 
 @section('right_top_button')
@@ -22,10 +18,9 @@
     <div class="card mb-6">
 
         <div class="card-content">
-            <form method="POST" action="{{ route('admin_faq_update',$single_faq->id) }}"
-                enctype="multipart/form-data">
+            <form method="POST" action="{{ route('admin_faq_update',$single_faq->id) }}" enctype="multipart/form-data">
                 @csrf
-                
+
                 <div class="field">
                     <label class="label">Question</label>
                     <div class="field-body">
@@ -47,7 +42,7 @@
                             placeholder="short content">{{ $single_faq->answer }}</textarea>
                     </div>
                 </div>
-                
+
                 <hr>
 
                 <div class="field grouped">

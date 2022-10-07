@@ -4,11 +4,7 @@
 
 @section('page_scripts')
 <script src="//cdn.ckeditor.com/4.14.1/standard/ckeditor.js"></script>
-<script type="text/javascript">
-    $(document).ready(function () {
-        $('.ckeditor').ckeditor();
-    });
-</script>
+
 @endsection
 
 @section('right_top_button')
@@ -26,7 +22,7 @@
                 enctype="multipart/form-data">
                 @csrf
                 <div class="image w-48  mx-auto">
-                    <img src="{{ asset('uploads/posts/'.$single_post->photo) }}" alt="pic" class="full">     
+                    <img src="{{ asset('uploads/posts/'.$single_post->photo) }}" alt="pic" class="full">
                 </div>
                 <div class="field">
                     <label class="label">Photo</label>
