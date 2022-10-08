@@ -65,60 +65,61 @@
     <div
         class="col-span-1 bg-gray-100 px-4 pt-4 pb-6 shadow-sm rounded overflow-hidden absolute lg:static left-4 top-16 z-10 w-72 lg:w-full lg:block">
         <div class="divide-gray-300 divide-y space-y-5 relative">
+            <form action="{{ route('cart_submit') }}" method="post">
+                @csrf
+                <div class="pt-4">
 
-            <div class="pt-4">
-
-                <h3 class="text-xl text-gray-800 mb-3 uppercase font-medium ">Reserve this Room </h3>
-
-            </div>
-
-            <div class="pt-4">
-                <h3 class="text-md text-gray-800 mb-3 uppercase font-medium ">Checkin and checkout </h3>
-
-                <div class="mt-4 flex items-center ">
-                    <input type="text"
-                        class="w-full border-gray-300 focus:ring-0 focus:border-primary px-3 py-1 text-gray-600 text-sm shadow-sm rounded "
-                        placeholder="05/12/2021" />
-                    <span class="mx-3 text-gray-500"> - </span>
-                    <input type="text"
-                        class="w-full border-gray-300 focus:ring-0 focus:border-primary px-3 py-1 text-gray-600 text-sm shadow-sm rounded "
-                        placeholder="08/12/2021" />
+                    <h3 class="text-xl text-gray-800 mb-3 uppercase font-medium ">Reserve this Room </h3>
+                    <input name="room_id" value="{{ $single_room_data->id }}" type="text" hidden>
                 </div>
-            </div>
 
+                <div class="pt-4">
+                    <h3 class="text-sm text-gray-800 mb-3 uppercase font-medium ">Checkin and checkout </h3>
 
-            <div class="pt-4">
-                <h3 class="text-mdl text-gray-800 mb-3 uppercase font-medium ">Adults </h3>
-
-                <div class="mt-4 flex items-center ">
-                    <input type="text"
-                        class="w-full border-gray-300 focus:ring-0 focus:border-primary px-3 py-1 text-gray-600 text-sm shadow-sm rounded "
-                        placeholder="1" />
+                    <div class="mt-4 flex items-center ">
+                        <input name="checkin" type="date"
+                            class="w-full border-gray-300 focus:ring-0 focus:border-primary px-3 py-1 text-gray-600 text-sm shadow-sm rounded "
+                            placeholder="05/12/2021" />
+                        <span class="mx-3 text-gray-500"> - </span>
+                        <input name="checkout" type="date"
+                            class="w-full border-gray-300 focus:ring-0 focus:border-primary px-3 py-1 text-gray-600 text-sm shadow-sm rounded "
+                            placeholder="08/12/2021" />
+                    </div>
                 </div>
-                <h3 class="pt-6 text-md text-gray-800 mb-3 uppercase font-medium ">children </h3>
 
-                <div class="mt-4 flex items-center ">
-                    <input type="text"
-                        class="w-full border-gray-300 focus:ring-0 focus:border-primary px-3 py-1 text-gray-600 text-sm shadow-sm rounded "
-                        placeholder="3" />
+
+                <div class="pt-4">
+                    <h3 class="text-sm text-gray-800 mb-3 uppercase font-medium ">Adults </h3>
+
+                    <div class="mt-4 flex items-center ">
+                        <input name="adult" type="text"
+                            class="w-full border-gray-300 focus:ring-0 focus:border-primary px-3 py-1 text-gray-600 text-sm shadow-sm rounded "
+                            placeholder="1" />
+                    </div>
+                    <h3 class="pt-6 text-sm text-gray-800 mb-3 uppercase font-medium ">children </h3>
+
+                    <div class="mt-4 flex items-center ">
+                        <input name="children" type="text"
+                            class="w-full border-gray-300 focus:ring-0 focus:border-primary px-3 py-1 text-gray-600 text-sm shadow-sm rounded "
+                            placeholder="3" />
+                    </div>
                 </div>
-            </div>
 
-            <div class="pt-4">
-                
-                <h3 class="pt-6 text-md text-gray-800 mb-3 uppercase font-medium ">Total </h3>
-                <h3 class="text-xl">$44</h3>
-            </div>
-            <div class="pt-4">
-                <div class="flex gap-3 border-b border-gray-200 pb-5 mt-6 ">
-                    <a href="#"
-                        class="bg-primary border border-primary text-white px-8 py-2 font-medium rounded uppercase hover:bg-transparent hover:text-primary transition text-sm flex items-center ">
-                        <span class="mr-2"><i class="fas fa-shopping-bag"></i> </span>
-                        Reserve
-                    </a>
+                <div class="pt-4">
+
+                    <h3 class="pt-6 text-sm text-gray-800 mb-3 uppercase font-medium ">Total </h3>
+                    <h3 class="text-xl"></h3>
                 </div>
-            </div>
-
+                <div class="pt-4">
+                    <div class="flex gap-3 border-b border-gray-200 pb-5 mt-6 ">
+                        <button type="submit"
+                            class="bg-primary border border-primary text-white px-8 py-2 font-medium rounded uppercase hover:bg-transparent hover:text-primary transition text-sm flex items-center ">
+                            <span class="mr-2"><i class="fas fa-shopping-bag"></i> </span>
+                            Reserve
+                        </button>
+                    </div>
+                </div>
+            </form>
 
 
         </div>

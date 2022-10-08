@@ -4,8 +4,7 @@
             <div class="w-full sm:w-1/2 md:w-1/2 lg:w-4/12 xl:w-3/12 px-4">
                 <div class="w-full mb-10">
                     <a href="javascript:void(0)" class="inline-block max-w-[160px] mb-6">
-                        <img src="{{ asset('front_assets/images/logo/logo-white.svg')}}" alt="logo"
-                            class="max-w-full" />
+                        <img src="{{ asset('front_assets/images/logo/logo.png')}}" alt="logo" class="max-w-full" />
                     </a>
                     <p class="text-base text-[#f3f4fe] mb-7">
                         We create digital experiences for brands and companies by using

@@ -35,11 +35,14 @@ Route::get('/contact', [ContactController::class, 'index'])->name('contact');
 Route::post('/contact', [ContactController::class, 'store'])->name('contact_submit');
 Route::get('/blog', [BlogController::class, 'index'])->name('blog');
 Route::get('/post/{id}', [BlogController::class, 'single'])->name('post');
-Route::get('/cart', [BookingController::class, 'cart_view'])->name('cart');
-Route::get('/checkout', [BookingController::class, 'checkout'])->name('checkout');
-Route::post('/payment', [BookingController::class, 'payment'])->name('payment');
 Route::get('/room', [RoomController::class, 'index'])->name('room');
 Route::get('/room/{id}', [RoomController::class, 'single_room'])->name('room_detail');
+
+Route::post('/booking/submit', [BookingController::class, 'cart_submit'])->name('cart_submit');
+Route::get('/cart', [BookingController::class, 'cart_view'])->name('cart');
+Route::get('/cart/delete/{id}', [BookingController::class, 'cart_delete'])->name('cart_delete');
+Route::get('/checkout', [BookingController::class, 'checkout'])->name('checkout');
+Route::post('/payment', [BookingController::class, 'payment'])->name('payment');
 
 
 

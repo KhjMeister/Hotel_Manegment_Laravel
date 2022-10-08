@@ -3,6 +3,8 @@
 
 <head>
     @include('front.layout.head')
+    @yield('page_style')
+
 </head>
 
 <body>
