@@ -27,7 +27,7 @@
 
     </span>
     <span class="absolute top-0 right-0 z-[-1]">
-      
+
     </span>
   </div>
 </div>
@@ -170,16 +170,46 @@
 
 
 
-  @else
-  <div class="px-4 w-full lg:w-7/12 xl:w-8/12">
-    <div class="text-[35px] font-semibold">
-      Cart is empty!
+
+</div>
+@else
+<div class="container gap-6 pb-16 pt-4 ">
+
+  <div>
+
+    <div class="space-y-4">
+      <div class=" items-center  p-4 border border-gray-200 rounded flex-wrap md:flex-nowrap bg-gray-100 ">
+        <h3 class="text-gray-800 text-xl mb-4 font-medium uppercase ">Cart is Empty</h3>
+
+      </div>
+
+    </div>
+    <div class="space-y-4">
+      <div
+        class="flex items-center md:justify-between gap-4 md:gap-6 p-4 border border-gray-200 rounded flex-wrap md:flex-nowrap bg-gray-100 ">
+        <div></div>
+        <div class="xl:col-span-3 lg:col-span-4 border border-gray-200 px-4 py-4 rounded mt-6 lg:mt-0 bg-gray-100">
+
+          <div class="flex justify-between my-3 text-gray-800 font-semibold uppercase">
+            <h4>Total: &nbsp;</h4>
+            <h4>$0</h4>
+          </div>
+
+
+
+
+        </div>
+
+      </div>
     </div>
   </div>
 
 
-  @endif
+
 
 </div>
+
+
+@endif
 
 @endsection

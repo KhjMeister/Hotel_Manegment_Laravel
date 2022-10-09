@@ -8,7 +8,7 @@
                     </a>
                     <p class="text-base text-[#f3f4fe] mb-7">
                         We create digital experiences for brands and companies by using
-                        technology.
+                        Laravel and tailwindcss.
                     </p>
                     <div class="flex items-center -mx-3">
                         <a href="javascript:void(0)" class="px-3 text-[#dddddd] hover:text-white">
@@ -55,7 +55,7 @@
                         <li>
                             <a href="javascript:void(0)"
                                 class="inline-block text-base text-[#f3f4fe] hover:text-primary leading-loose mb-2">
-                                Features
+                                Contact us
                             </a>
                         </li>
                         <li>

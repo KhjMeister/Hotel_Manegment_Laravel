@@ -15,6 +15,10 @@ use App\Http\Controllers\Admin\AdminPageController;
 use App\Http\Controllers\Admin\AdminContactController;
 use App\Http\Controllers\Admin\AdminAmenityController;
 use App\Http\Controllers\Admin\AdminRoomController;
+use App\Http\Controllers\Admin\AdminCustomerController;
+use App\Http\Controllers\Admin\AdminOrderController;
+use App\Http\Controllers\Admin\AdminSettingController;
+
 
 use App\Http\Controllers\Front\HomeController;
 use App\Http\Controllers\Front\AboutController;
@@ -26,6 +30,7 @@ use App\Http\Controllers\Front\RoomController;
 use App\Http\Controllers\Customer\CustomerAuthController;
 use App\Http\Controllers\Customer\CustomerHomeController;
 use App\Http\Controllers\Customer\CustomerProfileController;
+use App\Http\Controllers\Customer\CustomerOrdersController;
 
 
 // Front
@@ -43,7 +48,7 @@ Route::get('/cart', [BookingController::class, 'cart_view'])->name('cart');
 Route::get('/cart/delete/{id}', [BookingController::class, 'cart_delete'])->name('cart_delete');
 Route::get('/checkout', [BookingController::class, 'checkout'])->name('checkout');
 Route::post('/payment', [BookingController::class, 'payment'])->name('payment');
-
+Route::post('/payment/submit/', [BookingController::class, 'payment_submit'])->name('payment_submit');
 
 
 // customer
@@ -64,7 +69,8 @@ Route::group(['middleware' =>['customer:customer']], function(){
     Route::get('/customer/home', [CustomerHomeController::class, 'index'])->name('customer_home');
     Route::get('/customer/profile', [CustomerProfileController::class, 'index'])->name('customer_profile');
     Route::post('/customer/edit-profile-submit', [CustomerProfileController::class, 'profile_submit'])->name('customer_profile_submit');
-
+    Route::get('/customer/order/view', [CustomerOrdersController::class, 'index'])->name('customer_order_view');
+    Route::get('/customer/invoice/{id}', [CustomerOrdersController::class, 'invoice'])->name('customer_invoice');
 });
 
 // Admin
@@ -79,8 +85,17 @@ Route::post('admin/reset_password_submit', [AdminLoginController::class, 'reset_
 /* Admin - Middleware */
 Route::group(['middleware' =>['admin:admin']], function(){
 
-    Route::get('admin/logout', [AdminLoginController::class, 'logout'])->name('admin_logout');
+    Route::get('/admin/setting', [AdminSettingController::class, 'index'])->name('admin_setting');
+    Route::post('/admin/setting/update', [AdminSettingController::class, 'update'])->name('admin_setting_update');
 
+    Route::get('/admin/customers', [AdminCustomerController::class, 'index'])->name('admin_customer');
+    Route::get('/admin/customer/change-status/{id}', [AdminCustomerController::class, 'change_status'])->name('admin_customer_change_status');
+
+    Route::get('/admin/order/view', [AdminOrderController::class, 'index'])->name('admin_orders');
+    Route::get('/admin/order/invoice/{id}', [AdminOrderController::class, 'invoice'])->name('admin_invoice');
+    Route::get('/admin/order/delete/{id}', [AdminOrderController::class, 'delete'])->name('admin_order_delete');
+
+    Route::get('admin/logout', [AdminLoginController::class, 'logout'])->name('admin_logout');
     Route::get('admin/home', [AdminDashboardController::class, 'index'])->name('admin_home');
     Route::get('admin/profile', [AdminProfileController::class, 'index'])->name('admin_profile');
     Route::post('admin/profile-edit', [AdminProfileController::class, 'profile_submit'])->name('admin_profile_submit');

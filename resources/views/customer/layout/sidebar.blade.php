@@ -16,27 +16,18 @@
         </ul>
         <p class="menu-label">Pages</p>
         <ul class="menu-list">
-            <li>
-                <a class="dropdown">
-                    <span class="icon"><i class="mdi mdi-view-list"></i></span>
-                    <span class="menu-item-label">Hotel Section</span>
-                    <span class="icon"><i class="mdi mdi-plus"></i></span>
-                </a>
-                <ul>
-                    <li class="{{ Request::is('customer/amenity/view')?'active':'' }}">
-                        <a href="#">
-                            <span class="icon"><i class="mdi mdi-table"></i></span>
-                            <span class="menu-item-label">Amenities</span>
-                        </a>
-                    </li>
-
-                </ul>
-            </li>
+            
 
             <li class="{{ Request::is('customer/profile')?'active':'' }}">
                 <a href="{{ route('customer_profile') }}">
                     <span class="icon"><i class="mdi mdi-account-circle"></i></span>
                     <span class="menu-item-label">Profile</span>
+                </a>
+            </li>
+            <li class="{{ Request::is('customer/order/view')?'active':'' }}">
+                <a href="{{ route('customer_order_view') }}">
+                    <span class="icon"><i class="mdi mdi-account-circle"></i></span>
+                    <span class="menu-item-label">Orders</span>
                 </a>
             </li>
         </ul>

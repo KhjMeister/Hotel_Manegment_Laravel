@@ -13,8 +13,7 @@ var randomChartData = function randomChartData(n) {
 var chartColors = {
   "default": {
     primary: '#00D1B2',
-    info: '#209CEE',
-    danger: '#FF3860'
+    info: 'red',
   }
 };
 var ctx = document.getElementById('big-line-chart').getContext('2d');
@@ -44,20 +43,6 @@ new Chart(ctx, {
       pointBackgroundColor: chartColors["default"].info,
       pointBorderColor: 'rgba(255,255,255,0)',
       pointHoverBackgroundColor: chartColors["default"].info,
-      pointBorderWidth: 20,
-      pointHoverRadius: 4,
-      pointHoverBorderWidth: 15,
-      pointRadius: 4,
-      data: randomChartData(9)
-    }, {
-      fill: false,
-      borderColor: chartColors["default"].danger,
-      borderWidth: 2,
-      borderDash: [],
-      borderDashOffset: 0.0,
-      pointBackgroundColor: chartColors["default"].danger,
-      pointBorderColor: 'rgba(255,255,255,0)',
-      pointHoverBackgroundColor: chartColors["default"].danger,
       pointBorderWidth: 20,
       pointHoverRadius: 4,
       pointHoverBorderWidth: 15,

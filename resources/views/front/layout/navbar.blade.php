@@ -23,26 +23,16 @@
                                     Home
                                 </a>
                             </li>
-                            <li class="relative group submenu-item">
-                                <a href="javascript:void(0)"
-                                    class="text-base text-dark lg:text-white lg:group-hover:opacity-70 lg:group-hover:text-white group-hover:text-primary py-2 lg:py-6 lg:inline-flex lg:pl-0 lg:pr-4 flex mx-8 lg:mr-0 lg:ml-8 xl:ml-12 relative after:absolute after:w-2 after:h-2 after:border-b-2 after:border-r-2 after:border-current after:rotate-45 lg:after:right-0 after:right-1 after:top-1/2 after:-translate-y-1/2 after:mt-[-2px]">
-                                    Room & Suits
+                            @if ( $global_page_data->room_status==1 )
+                            <li class="relative group">
+                                <a href="{{ route('room') }}"
+                                    class="ud-menu-scroll text-base text-dark lg:text-white lg:group-hover:opacity-70 lg:group-hover:text-white group-hover:text-primary py-2 lg:py-6 lg:inline-flex lg:px-0 flex mx-8 lg:mr-0 lg:ml-7 xl:ml-12">
+                                    Rooms
                                 </a>
-                                <div
-                                    class="submenu hidden relative lg:absolute w-[250px] top-full lg:top-[110%] left-0 rounded-sm lg:shadow-lg p-4 lg:block lg:opacity-0 lg:invisible group-hover:opacity-100 lg:group-hover:visible lg:group-hover:top-full bg-white transition-[top] duration-300">
-                                    @if ( $global_page_data->room_status==1 )
-
-                                    <a href="{{ route('room') }}"
-                                        class="block text-sm text-body-color rounded hover:text-primary py-[10px] px-4">
-                                        Rooms
-                                    </a>
-                                    @endif
-
-                                   
-
-
-                                </div>
                             </li>
+                            @endif
+
+                           
                             <li class="relative group">
                                 <a href="{{ route('blog') }}"
                                     class="ud-menu-scroll text-base text-dark lg:text-white lg:group-hover:opacity-70 lg:group-hover:text-white group-hover:text-primary py-2 lg:py-6 lg:inline-flex lg:px-0 flex mx-8 lg:mr-0 lg:ml-7 xl:ml-12">
@@ -53,7 +43,7 @@
                             <li class="relative group">
                                 <a href="{{ route('about') }}"
                                     class="ud-menu-scroll text-base text-dark lg:text-white lg:group-hover:opacity-70 lg:group-hover:text-white group-hover:text-primary py-2 lg:py-6 lg:inline-flex lg:px-0 flex mx-8 lg:mr-0 lg:ml-7 xl:ml-12">
-                                    About Us
+                                    About us
                                 </a>
                             </li>
                             @endif
@@ -62,21 +52,21 @@
                             <li class="relative group">
                                 <a href="{{ route('contact') }}"
                                     class="ud-menu-scroll text-base text-dark lg:text-white lg:group-hover:opacity-70 lg:group-hover:text-white group-hover:text-primary py-2 lg:py-6 lg:inline-flex lg:px-0 flex mx-8 lg:mr-0 lg:ml-7 xl:ml-12">
-                                    Contact Us
+                                    Contact us
                                 </a>
                             </li>
                             @endif
                             <li class="relative group submenu-item">
                                 <a href="javascript:void(0)"
                                     class="text-base text-dark lg:text-white lg:group-hover:opacity-70 lg:group-hover:text-white group-hover:text-primary py-2 lg:py-6 lg:inline-flex lg:pl-0 lg:pr-4 flex mx-8 lg:mr-0 lg:ml-8 xl:ml-12 relative after:absolute after:w-2 after:h-2 after:border-b-2 after:border-r-2 after:border-current after:rotate-45 lg:after:right-0 after:right-1 after:top-1/2 after:-translate-y-1/2 after:mt-[-2px]">
-                                    Shoping Cart
+                                    Cart @if(session()->has('cart_room_id'))<sup >{{ count(session()->get('cart_room_id')) }}</sup>@endif
                                 </a>
                                 <div
                                     class="submenu hidden relative lg:absolute w-[250px] top-full lg:top-[110%] left-0 rounded-sm lg:shadow-lg p-4 lg:block lg:opacity-0 lg:invisible group-hover:opacity-100 lg:group-hover:visible lg:group-hover:top-full bg-white transition-[top] duration-300">
                                     @if ( $global_page_data->cart_status == 1 )
                                     <a href="{{ route('cart') }}"
                                         class="block text-sm text-body-color rounded hover:text-primary py-[10px] px-4">
-                                        Shoping Cart
+                                        Cart
                                     </a>
                                     @endif
                                     @if ( $global_page_data->checkout_status == 1 )
@@ -91,6 +81,7 @@
                         </ul>
                     </nav>
                 </div>
+                @if(!Auth::guard('customer')->check())
                 <div class="sm:flex justify-end hidden pr-16 lg:pr-0">
                     @if ( $global_page_data->signin_status==1 )
                     <a href="{{ route('customer_login') }}"
@@ -106,6 +97,14 @@
                     @endif
 
                 </div>
+                @else
+                <div class="sm:flex justify-end hidden pr-16 lg:pr-0">
+                    <a href="{{ route('customer_home') }}"
+                        class="text-base font-medium text-white bg-white bg-opacity-20 rounded-lg py-3 px-6 hover:bg-opacity-100 hover:text-dark signUpBtn duration-300 ease-in-out">
+                        Dashboard
+                    </a>
+                </div>
+                @endif
             </div>
         </div>
     </div>

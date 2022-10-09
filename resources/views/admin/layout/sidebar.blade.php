@@ -134,6 +134,24 @@
                     <span class="menu-item-label">Profile</span>
                 </a>
             </li>
+            <li class="{{ Request::is('admin/customer')?'active':'' }}">
+                <a href="{{ route('admin_customer') }}">
+                    <span class="icon"><i class="mdi mdi-account"></i></span>
+                    <span class="menu-item-label">Customers</span>
+                </a>
+            </li>
+            <li class="{{ Request::is('/admin/order/view')?'active':'' }}">
+                <a href="{{ route('admin_orders') }}">
+                    <span class="icon"><i class="mdi mdi-table"></i></span>
+                    <span class="menu-item-label">Orders</span>
+                </a>
+            </li>
+            <li class="{{ Request::is('/admin/setting')?'active':'' }}">
+                <a href="{{ route('admin_setting') }}">
+                    <span class="icon"><i class="mdi mdi-settings"></i></span>
+                    <span class="menu-item-label">Setting</span>
+                </a>
+            </li>
         </ul>
         {{-- <p class="menu-label">About</p>
         <ul class="menu-list">

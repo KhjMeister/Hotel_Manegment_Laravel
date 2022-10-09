@@ -41,6 +41,11 @@
                         <span class="icon"><i class="mdi mdi-email"></i></span>
                         <span>Messages</span>
                     </a>
+                    <a href="{{ route('home') }}" class="navbar-item">
+                        <span class="icon"><i class="mdi mdi-table"></i></span>
+                        <span>Website</span>
+                    </a>
+                    
                     <hr class="navbar-divider">
                     <a href="{{ route('customer_logout') }}" class="navbar-item">
                         <span class="icon"><i class="mdi mdi-logout"></i></span>

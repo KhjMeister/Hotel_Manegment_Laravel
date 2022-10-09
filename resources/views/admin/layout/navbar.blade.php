@@ -33,13 +33,9 @@
                         <span class="icon"><i class="mdi mdi-account"></i></span>
                         <span>Profile</span>
                     </a>
-                    <a class="navbar-item">
+                    <a href="{{ route('admin_setting') }}" class="navbar-item">
                         <span class="icon"><i class="mdi mdi-settings"></i></span>
                         <span>Settings</span>
-                    </a>
-                    <a class="navbar-item">
-                        <span class="icon"><i class="mdi mdi-email"></i></span>
-                        <span>Messages</span>
                     </a>
                     <hr class="navbar-divider">
                     <a href="{{ route('admin_logout') }}" class="navbar-item">
@@ -48,7 +44,37 @@
                     </a>
                 </div>
             </div>
-
+            <div class="navbar-item dropdown has-divider has-user-avatar">
+                <a class="navbar-link">
+                    <div class="user-avatar">
+                        @if (Auth::guard('admin')->user())
+                        <img src="{{ asset('uploads/'.Auth::guard('admin')->user()->photo) }}" alt="{{ Auth::guard('admin')->user()->name }}" class="rounded-full">
+                        @endif
+                    </div>
+                    @if (Auth::guard('admin')->user())
+                        
+                    <div class="is-user-name"><span>{{ Auth::guard('admin')->user()->name }}</span></div>
+                    @endif
+                    <span class="icon"><i class="mdi mdi-chevron-down"></i></span>
+                </a>
+                <div class="navbar-dropdown">
+                    <a href="{{ route('admin_profile') }}" class="navbar-item">
+                        <span class="icon"><i class="mdi mdi-account"></i></span>
+                        <span>Profile</span>
+                    </a>
+                    <a href="{{ route('admin_setting') }}" class="navbar-item">
+                        <span class="icon"><i class="mdi mdi-settings"></i></span>
+                        <span>Settings</span>
+                    </a>
+                    <hr class="navbar-divider">
+                    <a href="{{ route('admin_logout') }}" class="navbar-item">
+                        <span class="icon"><i class="mdi mdi-logout"></i></span>
+                        <span>Log Out</span>
+                    </a>
+                </div>
+            </div>
         </div>
+        
     </div>
+    
 </nav>
