@@ -44,7 +44,7 @@
                     </a>
                 </div>
             </div>
-            <div class="navbar-item dropdown has-divider has-user-avatar">
+            {{-- <div class="navbar-item dropdown has-divider has-user-avatar">
                 <a class="navbar-link">
                     <div class="user-avatar">
                         @if (Auth::guard('admin')->user())
@@ -72,7 +72,7 @@
                         <span>Log Out</span>
                     </a>
                 </div>
-            </div>
+            </div> --}}
         </div>
         
     </div>

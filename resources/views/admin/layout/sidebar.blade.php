@@ -40,7 +40,7 @@
             </li>
             <li>
                 <a class="dropdown">
-                    <span class="icon"><i class="mdi mdi-view-list"></i></span>
+                    <span class="icon"><i class="mdi mdi-home"></i></span>
                     <span class="menu-item-label">Home</span>
                     <span class="icon"><i class="mdi mdi-plus"></i></span>
                 </a>

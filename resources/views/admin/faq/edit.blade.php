@@ -27,7 +27,7 @@
                         <div class="field">
                             <div class="control icons-left">
                                 <input value="{{ $single_faq->question }}" class="input" type="text"
-                                    placeholder="Question" name="heading">
+                                    placeholder="Question" name="question">
                                 <span class="icon left"><i class="mdi mdi-view-list"></i></span>
                             </div>
                         </div>

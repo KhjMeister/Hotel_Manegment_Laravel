@@ -51,7 +51,7 @@ class AdminFaqController extends Controller
     }
     public function edit($id)
     {
-        $single_Faq = Faq::where('id',$id)->first();
+        $single_faq = Faq::where('id',$id)->first();
         return view('admin.faq.edit', compact('single_faq'));
     }
     public function update(Request $request,$id) 
